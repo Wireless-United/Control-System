@@ -1,0 +1,494 @@
+[**] [1:123000:0] Testing DNP3 Snort DIRECT OPERATE [**]
+[Priority: 0] 
+10/17-14:41:44.036835 172.16.0.2:42197 -> 192.168.0.5:20000
+TCP TTL:128 TOS:0x0 ID:49800 IpLen:20 DgmLen:67 DF
+***AP*** Seq: 0x63600B5A  Ack: 0xC799CB80  Win: 0x400  TcpLen: 20
+
+[**] [1:1000001:1] ICMP Flood Attack Detected [**]
+[Classification: Generic ICMP event] [Priority: 3] 
+10/17-14:41:46.653826 :: -> ff02::1:ff07:7d0c
+IPV6-ICMP TTL:255 TOS:0x0 ID:0 IpLen:40 DgmLen:72
+
+[**] [1:1000001:1] ICMP Flood Attack Detected [**]
+[Classification: Generic ICMP event] [Priority: 3] 
+10/17-14:41:46.941747 :: -> ff02::1:ff97:4b80
+IPV6-ICMP TTL:255 TOS:0x0 ID:0 IpLen:40 DgmLen:72
+
+[**] [1:1000001:1] ICMP Flood Attack Detected [**]
+[Classification: Generic ICMP event] [Priority: 3] 
+10/17-14:41:47.892411 fe80::c302:cd7c:8a07:7d0c -> ff02::2
+IPV6-ICMP TTL:255 TOS:0x0 ID:0 IpLen:40 DgmLen:48
+
+[**] [1:1000001:1] ICMP Flood Attack Detected [**]
+[Classification: Generic ICMP event] [Priority: 3] 
+10/17-14:41:47.967443 fe80::73f8:e68b:6597:4b80 -> ff02::2
+IPV6-ICMP TTL:255 TOS:0x0 ID:0 IpLen:40 DgmLen:48
+
+[**] [112:4:1] (spp_arpspoof) Attempted ARP cache overwrite attack [**]
+10/17-14:41:48.603215 
+
+[**] [1:1000001:1] ICMP Flood Attack Detected [**]
+[Classification: Generic ICMP event] [Priority: 3] 
+10/17-14:41:51.895945 fe80::c302:cd7c:8a07:7d0c -> ff02::2
+IPV6-ICMP TTL:255 TOS:0x0 ID:0 IpLen:40 DgmLen:48
+
+[**] [1:1000001:1] ICMP Flood Attack Detected [**]
+[Classification: Generic ICMP event] [Priority: 3] 
+10/17-14:41:51.895966 fe80::73f8:e68b:6597:4b80 -> ff02::2
+IPV6-ICMP TTL:255 TOS:0x0 ID:0 IpLen:40 DgmLen:48
+
+[**] [1:1000001:1] ICMP Flood Attack Detected [**]
+[Classification: Generic ICMP event] [Priority: 3] 
+10/17-14:41:55.896300 fe80::c302:cd7c:8a07:7d0c -> ff02::2
+IPV6-ICMP TTL:255 TOS:0x0 ID:0 IpLen:40 DgmLen:48
+
+[**] [1:1000001:1] ICMP Flood Attack Detected [**]
+[Classification: Generic ICMP event] [Priority: 3] 
+10/17-14:41:55.896301 fe80::73f8:e68b:6597:4b80 -> ff02::2
+IPV6-ICMP TTL:255 TOS:0x0 ID:0 IpLen:40 DgmLen:48
+
+[**] [1:123000:0] Testing DNP3 Snort DIRECT OPERATE [**]
+[Priority: 0] 
+10/17-14:42:00.580372 172.16.0.2:42197 -> 192.168.0.5:20000
+TCP TTL:128 TOS:0x0 ID:49801 IpLen:20 DgmLen:67 DF
+***AP*** Seq: 0x63600B75  Ack: 0xC799CB9F  Win: 0x400  TcpLen: 20
+
+[**] [112:4:1] (spp_arpspoof) Attempted ARP cache overwrite attack [**]
+10/17-14:42:05.812672 
+
+[**] [1:123000:0] Testing DNP3 Snort DIRECT OPERATE [**]
+[Priority: 0] 
+10/17-14:42:11.589869 172.16.0.2:42197 -> 192.168.0.5:20000
+TCP TTL:128 TOS:0x0 ID:49802 IpLen:20 DgmLen:67 DF
+***AP*** Seq: 0x63600B90  Ack: 0xC799CBBE  Win: 0x3FF  TcpLen: 20
+
+[**] [112:4:1] (spp_arpspoof) Attempted ARP cache overwrite attack [**]
+10/17-14:42:16.603432 
+
+[**] [1:123000:0] Testing DNP3 Snort DIRECT OPERATE [**]
+[Priority: 0] 
+10/17-14:42:18.676932 172.16.0.2:54887 -> 192.168.0.5:20000
+TCP TTL:128 TOS:0x0 ID:49804 IpLen:20 DgmLen:67 DF
+***AP*** Seq: 0x1CA915AD  Ack: 0xC017669B  Win: 0x3FE  TcpLen: 20
+
+[**] [1:123000:0] Testing DNP3 Snort DIRECT OPERATE [**]
+[Priority: 0] 
+10/17-14:42:22.547030 172.16.0.2:33385 -> 192.168.0.5:20000
+TCP TTL:128 TOS:0x0 ID:49805 IpLen:20 DgmLen:67 DF
+***AP*** Seq: 0x2919C541  Ack: 0xE8937A9B  Win: 0x3FD  TcpLen: 20
+
+[**] [1:123000:0] Testing DNP3 Snort DIRECT OPERATE [**]
+[Priority: 0] 
+10/17-14:42:30.605708 172.16.0.2:50927 -> 192.168.0.5:20000
+TCP TTL:128 TOS:0x0 ID:49807 IpLen:20 DgmLen:67 DF
+***AP*** Seq: 0xE1018D60  Ack: 0x3D751D54  Win: 0x400  TcpLen: 20
+
+[**] [1:1000001:1] ICMP Flood Attack Detected [**]
+[Classification: Generic ICMP event] [Priority: 3] 
+10/17-14:42:31.837829 :: -> ff02::1:ff07:7d0c
+IPV6-ICMP TTL:255 TOS:0x0 ID:0 IpLen:40 DgmLen:72
+
+[**] [1:1000001:1] ICMP Flood Attack Detected [**]
+[Classification: Generic ICMP event] [Priority: 3] 
+10/17-14:42:31.869764 :: -> ff02::1:ff97:4b80
+IPV6-ICMP TTL:255 TOS:0x0 ID:0 IpLen:40 DgmLen:72
+
+[**] [1:1000001:1] ICMP Flood Attack Detected [**]
+[Classification: Generic ICMP event] [Priority: 3] 
+10/17-14:42:32.892785 fe80::c302:cd7c:8a07:7d0c -> ff02::2
+IPV6-ICMP TTL:255 TOS:0x0 ID:0 IpLen:40 DgmLen:48
+
+[**] [1:1000001:1] ICMP Flood Attack Detected [**]
+[Classification: Generic ICMP event] [Priority: 3] 
+10/17-14:42:32.894851 fe80::73f8:e68b:6597:4b80 -> ff02::2
+IPV6-ICMP TTL:255 TOS:0x0 ID:0 IpLen:40 DgmLen:48
+
+[**] [112:4:1] (spp_arpspoof) Attempted ARP cache overwrite attack [**]
+10/17-14:42:35.894531 
+
+[**] [1:1000001:1] ICMP Flood Attack Detected [**]
+[Classification: Generic ICMP event] [Priority: 3] 
+10/17-14:42:36.893640 fe80::c302:cd7c:8a07:7d0c -> ff02::2
+IPV6-ICMP TTL:255 TOS:0x0 ID:0 IpLen:40 DgmLen:48
+
+[**] [1:1000001:1] ICMP Flood Attack Detected [**]
+[Classification: Generic ICMP event] [Priority: 3] 
+10/17-14:42:36.893674 fe80::73f8:e68b:6597:4b80 -> ff02::2
+IPV6-ICMP TTL:255 TOS:0x0 ID:0 IpLen:40 DgmLen:48
+
+[**] [112:4:1] (spp_arpspoof) Attempted ARP cache overwrite attack [**]
+10/17-14:42:36.916666 
+
+[**] [112:4:1] (spp_arpspoof) Attempted ARP cache overwrite attack [**]
+10/17-14:42:37.940667 
+
+[**] [1:123000:0] Testing DNP3 Snort DIRECT OPERATE [**]
+[Priority: 0] 
+10/17-14:42:39.486515 172.16.0.2:33385 -> 192.168.0.5:20000
+TCP TTL:128 TOS:0x0 ID:49810 IpLen:20 DgmLen:67 DF
+***AP*** Seq: 0x2919C56E  Ack: 0xE8937BA2  Win: 0x3FD  TcpLen: 20
+
+[**] [1:1000001:1] ICMP Flood Attack Detected [**]
+[Classification: Generic ICMP event] [Priority: 3] 
+10/17-14:42:40.893236 fe80::c302:cd7c:8a07:7d0c -> ff02::2
+IPV6-ICMP TTL:255 TOS:0x0 ID:0 IpLen:40 DgmLen:48
+
+[**] [1:1000001:1] ICMP Flood Attack Detected [**]
+[Classification: Generic ICMP event] [Priority: 3] 
+10/17-14:42:40.893267 fe80::73f8:e68b:6597:4b80 -> ff02::2
+IPV6-ICMP TTL:255 TOS:0x0 ID:0 IpLen:40 DgmLen:48
+
+[**] [112:4:1] (spp_arpspoof) Attempted ARP cache overwrite attack [**]
+10/17-14:42:42.910538 
+
+[**] [112:4:1] (spp_arpspoof) Attempted ARP cache overwrite attack [**]
+10/17-14:42:43.603627 
+
+[**] [112:4:1] (spp_arpspoof) Attempted ARP cache overwrite attack [**]
+10/17-14:42:43.924676 
+
+[**] [112:4:1] (spp_arpspoof) Attempted ARP cache overwrite attack [**]
+10/17-14:42:44.212685 
+
+[**] [112:4:1] (spp_arpspoof) Attempted ARP cache overwrite attack [**]
+10/17-14:42:44.948682 
+
+[**] [1:123000:0] Testing DNP3 Snort DIRECT OPERATE [**]
+[Priority: 0] 
+10/17-14:42:46.532593 172.16.0.2:50927 -> 192.168.0.5:20000
+TCP TTL:128 TOS:0x0 ID:49812 IpLen:20 DgmLen:67 DF
+***AP*** Seq: 0xE1018D7B  Ack: 0x3D751D73  Win: 0x400  TcpLen: 20
+
+[**] [112:4:1] (spp_arpspoof) Attempted ARP cache overwrite attack [**]
+10/17-14:42:50.918513 
+
+[**] [112:4:1] (spp_arpspoof) Attempted ARP cache overwrite attack [**]
+10/17-14:42:51.924673 
+
+[**] [112:4:1] (spp_arpspoof) Attempted ARP cache overwrite attack [**]
+10/17-14:42:52.952672 
+
+[**] [1:123000:0] Testing DNP3 Snort DIRECT OPERATE [**]
+[Priority: 0] 
+10/17-14:42:55.486163 172.16.0.2:42197 -> 192.168.0.5:20000
+TCP TTL:128 TOS:0x0 ID:49813 IpLen:20 DgmLen:75 DF
+***AP*** Seq: 0x63600BBD  Ack: 0xC799CC88  Win: 0x3FF  TcpLen: 20
+
+[**] [112:4:1] (spp_arpspoof) Attempted ARP cache overwrite attack [**]
+10/17-14:43:06.950623 
+
+[**] [112:4:1] (spp_arpspoof) Attempted ARP cache overwrite attack [**]
+10/17-14:43:07.956665 
+
+[**] [112:4:1] (spp_arpspoof) Attempted ARP cache overwrite attack [**]
+10/17-14:43:08.924196 
+
+[**] [112:4:1] (spp_arpspoof) Attempted ARP cache overwrite attack [**]
+10/17-14:43:08.980661 
+
+[**] [112:4:1] (spp_arpspoof) Attempted ARP cache overwrite attack [**]
+10/17-14:43:09.048031 
+
+[**] [112:4:1] (spp_arpspoof) Attempted ARP cache overwrite attack [**]
+10/17-14:43:09.220623 
+
+[**] [112:4:1] (spp_arpspoof) Attempted ARP cache overwrite attack [**]
+10/17-14:43:14.320798 
+
+[**] [1:123000:0] Testing DNP3 Snort DIRECT OPERATE [**]
+[Priority: 0] 
+10/17-14:43:17.467350 172.16.0.2:42197 -> 192.168.0.5:20000
+TCP TTL:128 TOS:0x0 ID:49814 IpLen:20 DgmLen:67 DF
+***AP*** Seq: 0x63600BE0  Ack: 0xC799CCAD  Win: 0x3FF  TcpLen: 20
+
+[**] [112:4:1] (spp_arpspoof) Attempted ARP cache overwrite attack [**]
+10/17-14:43:19.407979 
+
+[**] [112:4:1] (spp_arpspoof) Attempted ARP cache overwrite attack [**]
+10/17-14:43:24.492945 
+
+[**] [1:123000:0] Testing DNP3 Snort DIRECT OPERATE [**]
+[Priority: 0] 
+10/17-14:43:25.279666 172.16.0.2:54887 -> 192.168.0.5:20000
+TCP TTL:128 TOS:0x0 ID:49817 IpLen:20 DgmLen:67 DF
+***AP*** Seq: 0x1CA915DA  Ack: 0xC0176752  Win: 0x3FE  TcpLen: 20
+
+[**] [112:4:1] (spp_arpspoof) Attempted ARP cache overwrite attack [**]
+10/17-14:43:29.588466 
+
+[**] [1:123000:0] Testing DNP3 Snort DIRECT OPERATE [**]
+[Priority: 0] 
+10/17-14:43:34.037338 172.16.0.2:33385 -> 192.168.0.5:20000
+TCP TTL:128 TOS:0x0 ID:49820 IpLen:20 DgmLen:67 DF
+***AP*** Seq: 0x2919C59B  Ack: 0xE8937CA9  Win: 0x3FD  TcpLen: 20
+
+[**] [112:4:1] (spp_arpspoof) Attempted ARP cache overwrite attack [**]
+10/17-14:43:34.660480 
+
+[**] [112:4:1] (spp_arpspoof) Attempted ARP cache overwrite attack [**]
+10/17-14:43:39.046940 
+
+[**] [112:4:1] (spp_arpspoof) Attempted ARP cache overwrite attack [**]
+10/17-14:43:39.763991 
+
+[**] [112:4:1] (spp_arpspoof) Attempted ARP cache overwrite attack [**]
+10/17-14:43:40.052662 
+
+[**] [1:123000:0] Testing DNP3 Snort DIRECT OPERATE [**]
+[Priority: 0] 
+10/17-14:43:40.177483 172.16.0.2:50927 -> 192.168.0.5:20000
+TCP TTL:128 TOS:0x0 ID:49822 IpLen:20 DgmLen:67 DF
+***AP*** Seq: 0xE1018DA8  Ack: 0x3D751E4B  Win: 0x400  TcpLen: 20
+
+[**] [112:4:1] (spp_arpspoof) Attempted ARP cache overwrite attack [**]
+10/17-14:43:41.076666 
+
+[**] [112:4:1] (spp_arpspoof) Attempted ARP cache overwrite attack [**]
+10/17-14:43:44.845012 
+
+[**] [1:123000:0] Testing DNP3 Snort DIRECT OPERATE [**]
+[Priority: 0] 
+10/17-14:43:45.791060 172.16.0.2:50927 -> 192.168.0.5:20000
+TCP TTL:128 TOS:0x0 ID:49824 IpLen:20 DgmLen:67 DF
+***AP*** Seq: 0xE1018DC3  Ack: 0x3D751E6A  Win: 0x400  TcpLen: 20
+
+[**] [112:4:1] (spp_arpspoof) Attempted ARP cache overwrite attack [**]
+10/17-14:43:49.920469 
+
+[**] [112:4:1] (spp_arpspoof) Attempted ARP cache overwrite attack [**]
+10/17-14:43:54.988592 
+
+[**] [1:123000:0] Testing DNP3 Snort DIRECT OPERATE [**]
+[Priority: 0] 
+10/17-14:43:56.087472 172.16.0.2:42197 -> 192.168.0.5:20000
+TCP TTL:128 TOS:0x0 ID:49825 IpLen:20 DgmLen:67 DF
+***AP*** Seq: 0x63600C0D  Ack: 0xC799CD77  Win: 0x3FF  TcpLen: 20
+
+[**] [1:123000:0] Testing DNP3 Snort DIRECT OPERATE [**]
+[Priority: 0] 
+10/17-14:43:58.776793 172.16.0.2:50927 -> 192.168.0.5:20000
+TCP TTL:128 TOS:0x0 ID:49826 IpLen:20 DgmLen:67 DF
+***AP*** Seq: 0xE1018DDE  Ack: 0x3D751E89  Win: 0x400  TcpLen: 20
+
+[**] [112:4:1] (spp_arpspoof) Attempted ARP cache overwrite attack [**]
+10/17-14:44:00.092593 
+
+[**] [1:123000:0] Testing DNP3 Snort DIRECT OPERATE [**]
+[Priority: 0] 
+10/17-14:44:04.293666 172.16.0.2:50927 -> 192.168.0.5:20000
+TCP TTL:128 TOS:0x0 ID:49827 IpLen:20 DgmLen:67 DF
+***AP*** Seq: 0xE1018DF9  Ack: 0x3D751EA8  Win: 0x400  TcpLen: 20
+
+[**] [112:4:1] (spp_arpspoof) Attempted ARP cache overwrite attack [**]
+10/17-14:44:05.176458 
+
+[**] [112:4:1] (spp_arpspoof) Attempted ARP cache overwrite attack [**]
+10/17-14:44:10.256057 
+
+[**] [1:123000:0] Testing DNP3 Snort DIRECT OPERATE [**]
+[Priority: 0] 
+10/17-14:44:12.598017 172.16.0.2:33385 -> 192.168.0.5:20000
+TCP TTL:128 TOS:0x0 ID:49828 IpLen:20 DgmLen:67 DF
+***AP*** Seq: 0x2919C5B6  Ack: 0xE8937CC8  Win: 0x3FD  TcpLen: 20
+
+[**] [112:4:1] (spp_arpspoof) Attempted ARP cache overwrite attack [**]
+10/17-14:44:15.324856 
+
+[**] [112:4:1] (spp_arpspoof) Attempted ARP cache overwrite attack [**]
+10/17-14:44:20.432580 
+
+[**] [112:4:1] (spp_arpspoof) Attempted ARP cache overwrite attack [**]
+10/17-14:44:25.516653 
+
+[**] [112:4:1] (spp_arpspoof) Attempted ARP cache overwrite attack [**]
+10/17-14:44:30.600991 
+
+[**] [112:4:1] (spp_arpspoof) Attempted ARP cache overwrite attack [**]
+10/17-14:44:35.695956 
+
+[**] [112:4:1] (spp_arpspoof) Attempted ARP cache overwrite attack [**]
+10/17-14:44:40.801706 
+
+[**] [1:123000:0] Testing DNP3 Snort DIRECT OPERATE [**]
+[Priority: 0] 
+10/17-14:44:41.125511 172.16.0.2:42197 -> 192.168.0.5:20000
+TCP TTL:128 TOS:0x0 ID:49835 IpLen:20 DgmLen:75 DF
+***AP*** Seq: 0x63600C3A  Ack: 0xC799CE41  Win: 0x3FF  TcpLen: 20
+
+[**] [112:4:1] (spp_arpspoof) Attempted ARP cache overwrite attack [**]
+10/17-14:44:45.175533 
+
+[**] [112:4:1] (spp_arpspoof) Attempted ARP cache overwrite attack [**]
+10/17-14:44:45.880643 
+
+[**] [112:4:1] (spp_arpspoof) Attempted ARP cache overwrite attack [**]
+10/17-14:44:46.196661 
+
+[**] [112:4:1] (spp_arpspoof) Attempted ARP cache overwrite attack [**]
+10/17-14:44:47.220667 
+
+[**] [112:4:1] (spp_arpspoof) Attempted ARP cache overwrite attack [**]
+10/17-14:44:50.971920 
+
+[**] [112:4:1] (spp_arpspoof) Attempted ARP cache overwrite attack [**]
+10/17-14:44:52.191477 
+
+[**] [112:4:1] (spp_arpspoof) Attempted ARP cache overwrite attack [**]
+10/17-14:44:53.204665 
+
+[**] [112:4:1] (spp_arpspoof) Attempted ARP cache overwrite attack [**]
+10/17-14:44:54.228664 
+
+[**] [112:2:1] (spp_arpspoof) Ethernet/ARP Mismatch request for Source [**]
+10/17-14:44:56.027364 
+
+[**] [112:4:1] (spp_arpspoof) Attempted ARP cache overwrite attack [**]
+10/17-14:44:56.027364 
+
+[**] [112:2:1] (spp_arpspoof) Ethernet/ARP Mismatch request for Source [**]
+10/17-14:44:56.028249 
+
+[**] [112:4:1] (spp_arpspoof) Attempted ARP cache overwrite attack [**]
+10/17-14:44:56.028249 
+
+[**] [112:2:1] (spp_arpspoof) Ethernet/ARP Mismatch request for Source [**]
+10/17-14:44:56.029086 
+
+[**] [112:4:1] (spp_arpspoof) Attempted ARP cache overwrite attack [**]
+10/17-14:44:56.029086 
+
+[**] [112:2:1] (spp_arpspoof) Ethernet/ARP Mismatch request for Source [**]
+10/17-14:44:56.030040 
+
+[**] [112:4:1] (spp_arpspoof) Attempted ARP cache overwrite attack [**]
+10/17-14:44:56.030040 
+
+[**] [112:2:1] (spp_arpspoof) Ethernet/ARP Mismatch request for Source [**]
+10/17-14:44:56.031181 
+
+[**] [112:4:1] (spp_arpspoof) Attempted ARP cache overwrite attack [**]
+10/17-14:44:56.031181 
+
+[**] [112:4:1] (spp_arpspoof) Attempted ARP cache overwrite attack [**]
+10/17-14:44:56.051839 
+
+[**] [112:4:1] (spp_arpspoof) Attempted ARP cache overwrite attack [**]
+10/17-14:45:00.199589 
+
+[**] [112:4:1] (spp_arpspoof) Attempted ARP cache overwrite attack [**]
+10/17-14:45:01.204684 
+
+[**] [112:4:1] (spp_arpspoof) Attempted ARP cache overwrite attack [**]
+10/17-14:45:02.228673 
+
+[**] [1:123000:0] Testing DNP3 Snort DIRECT OPERATE [**]
+[Priority: 0] 
+10/17-14:45:04.738329 172.16.0.2:42197 -> 192.168.0.5:20000
+TCP TTL:128 TOS:0x0 ID:49836 IpLen:20 DgmLen:67 DF
+***AP*** Seq: 0x63600C5D  Ack: 0xC799CE66  Win: 0x3FF  TcpLen: 20
+
+[**] [112:4:1] (spp_arpspoof) Attempted ARP cache overwrite attack [**]
+10/17-14:45:09.604729 
+
+[**] [1:123000:0] Testing DNP3 Snort DIRECT OPERATE [**]
+[Priority: 0] 
+10/17-14:45:14.774090 172.16.0.2:54887 -> 192.168.0.5:20000
+TCP TTL:128 TOS:0x0 ID:49837 IpLen:20 DgmLen:67 DF
+***AP*** Seq: 0x1CA91619  Ack: 0xC01768A1  Win: 0x3FE  TcpLen: 20
+
+[**] [112:4:1] (spp_arpspoof) Attempted ARP cache overwrite attack [**]
+10/17-14:45:16.231646 
+
+[**] [112:4:1] (spp_arpspoof) Attempted ARP cache overwrite attack [**]
+10/17-14:45:17.236670 
+
+[**] [112:4:1] (spp_arpspoof) Attempted ARP cache overwrite attack [**]
+10/17-14:45:18.260667 
+
+[**] [1:123000:0] Testing DNP3 Snort DIRECT OPERATE [**]
+[Priority: 0] 
+10/17-14:45:20.838219 172.16.0.2:33385 -> 192.168.0.5:20000
+TCP TTL:128 TOS:0x0 ID:49839 IpLen:20 DgmLen:67 DF
+***AP*** Seq: 0x2919C5E3  Ack: 0xE8937DCF  Win: 0x3FC  TcpLen: 20
+
+[**] [1:123000:0] Testing DNP3 Snort DIRECT OPERATE [**]
+[Priority: 0] 
+10/17-14:45:28.509732 172.16.0.2:50927 -> 192.168.0.5:20000
+TCP TTL:128 TOS:0x0 ID:49841 IpLen:20 DgmLen:67 DF
+***AP*** Seq: 0xE1018E38  Ack: 0x3D752039  Win: 0x400  TcpLen: 20
+
+[**] [112:4:1] (spp_arpspoof) Attempted ARP cache overwrite attack [**]
+10/17-14:45:30.356661 
+
+[**] [1:123000:0] Testing DNP3 Snort DIRECT OPERATE [**]
+[Priority: 0] 
+10/17-14:45:34.991685 172.16.0.2:50927 -> 192.168.0.5:20000
+TCP TTL:128 TOS:0x0 ID:49843 IpLen:20 DgmLen:67 DF
+***AP*** Seq: 0xE1018E53  Ack: 0x3D752058  Win: 0x3FF  TcpLen: 20
+
+[**] [112:4:1] (spp_arpspoof) Attempted ARP cache overwrite attack [**]
+10/17-14:45:36.104939 
+
+[**] [1:123000:0] Testing DNP3 Snort DIRECT OPERATE [**]
+[Priority: 0] 
+10/17-14:45:39.680330 172.16.0.2:33385 -> 192.168.0.5:20000
+TCP TTL:128 TOS:0x0 ID:49845 IpLen:20 DgmLen:67 DF
+***AP*** Seq: 0x2919C610  Ack: 0xE8937ED6  Win: 0x402  TcpLen: 20
+
+[**] [112:4:1] (spp_arpspoof) Attempted ARP cache overwrite attack [**]
+10/17-14:45:48.327918 
+
+[**] [112:4:1] (spp_arpspoof) Attempted ARP cache overwrite attack [**]
+10/17-14:45:49.332662 
+
+[**] [112:4:1] (spp_arpspoof) Attempted ARP cache overwrite attack [**]
+10/17-14:45:50.356665 
+
+[**] [1:123000:0] Testing DNP3 Snort DIRECT OPERATE [**]
+[Priority: 0] 
+10/17-14:45:51.208259 172.16.0.2:42197 -> 192.168.0.5:20000
+TCP TTL:128 TOS:0x0 ID:49847 IpLen:20 DgmLen:67 DF
+***AP*** Seq: 0x63600C8A  Ack: 0xC799CF30  Win: 0x3FE  TcpLen: 20
+
+[**] [1:123000:0] Testing DNP3 Snort DIRECT OPERATE [**]
+[Priority: 0] 
+10/17-14:45:56.774195 172.16.0.2:42197 -> 192.168.0.5:20000
+TCP TTL:128 TOS:0x0 ID:49848 IpLen:20 DgmLen:75 DF
+***AP*** Seq: 0x63600CA5  Ack: 0xC799CF4F  Win: 0x3FE  TcpLen: 20
+
+[**] [112:4:1] (spp_arpspoof) Attempted ARP cache overwrite attack [**]
+10/17-14:46:01.605131 
+
+[**] [112:4:1] (spp_arpspoof) Attempted ARP cache overwrite attack [**]
+10/17-14:46:23.604666 
+
+[**] [112:4:1] (spp_arpspoof) Attempted ARP cache overwrite attack [**]
+10/17-14:46:30.105346 
+
+[**] [112:4:1] (spp_arpspoof) Attempted ARP cache overwrite attack [**]
+10/17-14:46:54.456582 
+
+[**] [112:4:1] (spp_arpspoof) Attempted ARP cache overwrite attack [**]
+10/17-14:46:55.476670 
+
+[**] [112:4:1] (spp_arpspoof) Attempted ARP cache overwrite attack [**]
+10/17-14:46:56.500669 
+
+[**] [112:4:1] (spp_arpspoof) Attempted ARP cache overwrite attack [**]
+10/17-14:47:01.472501 
+
+[**] [112:4:1] (spp_arpspoof) Attempted ARP cache overwrite attack [**]
+10/17-14:47:02.484674 
+
+[**] [112:4:1] (spp_arpspoof) Attempted ARP cache overwrite attack [**]
+10/17-14:47:03.508671 
+
+[**] [112:4:1] (spp_arpspoof) Attempted ARP cache overwrite attack [**]
+10/17-14:47:09.480550 
+
+[**] [112:4:1] (spp_arpspoof) Attempted ARP cache overwrite attack [**]
+10/17-14:47:10.484674 
+
+[**] [112:4:1] (spp_arpspoof) Attempted ARP cache overwrite attack [**]
+10/17-14:47:11.508670 
+
