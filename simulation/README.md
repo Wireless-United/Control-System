@@ -1,12 +1,13 @@
 # Cyber-Physical Grid Simulation
 
-A modular cyber-physical grid simulation project that integrates IEEE-39 bus system with AVR (Automatic Voltage Regulator) control using PROFINET-like communication.
+A modular cyber-## Installationation project that integrates IEEE-39 bus system with AVR (Automatic Voltage Regulator) control using PROFINET-like communication.
 
 ## Project Structure
 
 ```
 simulation/
 ├── grid.py                 # Main simulation entry point
+├── scada.py               # SCADA-RTU demonstration with DNP3
 ├── test_setup.py          # Test script to verify installation
 ├── requirements.txt       # Required Python packages
 ├── components/            # Grid components
@@ -14,7 +15,9 @@ simulation/
 │   ├── bus.py            # Bus component
 │   ├── generator.py      # Generator component
 │   ├── load.py           # Load component
-│   └── avr.py            # Automatic Voltage Regulator
+│   ├── avr.py            # Automatic Voltage Regulator
+│   ├── scada_master.py   # SCADA Master (DNP3)
+│   └── rtu.py            # Remote Terminal Unit (DNP3)
 ├── endpoints/             # Control system endpoints
 │   ├── __init__.py
 │   ├── sensor.py         # Voltage/current sensors
@@ -22,7 +25,8 @@ simulation/
 │   └── actuator.py       # Generator excitation control
 └── protocols/             # Communication protocols
     ├── __init__.py
-    └── profinet.py       # PROFINET-like fieldbus protocol
+    ├── profinet.py       # PROFINET-like fieldbus protocol
+    └── dnp3.py           # DNP3 protocol for SCADA-RTU communication
 ```
 
 ## Features
@@ -42,10 +46,27 @@ simulation/
 ### Communication
 
 - **PROFINET Protocol**: Low-latency fieldbus communication (2ms typical)
+- **DNP3 Protocol**: SCADA-RTU communication with polling (100-500ms latency)
 - **Asynchronous Messaging**: Non-blocking communication between endpoints
 - **Message Prioritization**: High/normal/low priority message handling
 
-## Installation
+## Demonstrations
+
+### Basic Grid Simulation
+
+Run the main grid simulation with PROFINET AVR control:
+
+```bash
+python grid.py
+```
+
+### SCADA-RTU System
+
+Run the SCADA demonstration with DNP3 communication:
+
+```bash
+python scada.py
+```
 
 1. **Install Required Packages**:
 
@@ -60,15 +81,23 @@ simulation/
 
 ## Usage
 
-### Basic Simulation
+### Basic Grid Simulation
 
-Run the main simulation:
+Run the main grid simulation with PROFINET AVR control:
 
 ```bash
 python grid.py
 ```
 
-### What the Simulation Does
+### SCADA-RTU System
+
+Run the SCADA demonstration with DNP3 communication:
+
+```bash
+python scada.py
+```
+
+### What the Grid Simulation Does
 
 1. **System Initialization**:
 
@@ -108,11 +137,55 @@ PROFINET: 156/156 delivered, avg latency: 2.1ms
 
 === SIMULATING LOAD INCREASE ===
 Changed Load 0 demand by ΔP=20.0MW, new demand: P=117.0MW, Q=44.3MVAR
-Bus 3 voltage before load change: 1.021 pu
+   Bus 3 voltage before load change: 1.021 pu
 ...
 ```
 
-## Configuration
+### What the SCADA System Does
+
+1. **SCADA Master Initialization**:
+
+   - Creates DNP3 SCADA master with 5-second polling interval
+   - Registers multiple RTUs for monitoring different grid locations
+   - Starts DNP3 network with 100-500ms communication delays
+
+2. **RTU Operation**:
+
+   - **Generation RTUs**: Monitor generator buses (30, 31)
+   - **Load Center RTU**: Monitors major load bus (3)
+   - **Data Collection**: Voltage, power, breaker status
+   - **Control Capabilities**: Breaker control, voltage setpoints
+
+3. **Communication Comparison**:
+
+   - **PROFINET AVR**: 2ms latency, 50Hz sensor updates, local control
+   - **DNP3 SCADA**: 100-500ms latency, 5-second polling, supervisory control
+   - **Demonstrates**: Fast vs. slow control loop differences
+
+4. **Operator Scenarios**:
+   - Remote voltage setpoint adjustment via SCADA
+   - Breaker operation commands
+   - Generator start/stop control
+   - All actions logged with communication delays
+
+### Expected SCADA Output
+
+````
+🏭 SCADA-RTU Communication Demonstration using DNP3
+============================================================
+16:45:23 - INFO - DNP3 network scada_dnp3 started
+16:45:23 - INFO - SCADA Master Control Center SCADA started with 5-second polling interval
+16:45:23 - INFO - RTU Generation RTU 1 initialized for Bus 30
+...
+=== System Status at t=10.0s ===
+SCADA Master: 18 measurements, 0 alarms
+DNP3 Network: 6/6 delivered, avg latency: 287.3ms
+RTU Generation RTU 1: Online, last communication: 0.3s ago
+...
+🎯 === SCENARIO 1: Operator Voltage Setpoint Change ===
+16:45:38 - INFO - 📊 RTU 10: Voltage setpoint changed to 1.040 pu for Gen 0
+16:45:38 - INFO - 📊 Updated AVR setpoint for Gen 0 to 1.040 pu
+...## Configuration
 
 ### AVR Parameters
 
@@ -140,7 +213,7 @@ Bus 3 voltage before load change: 1.021 pu
 # Deploy AVR on additional generators
 for gen_id in [3, 4, 5]:
     grid.deploy_avr_system(gen_id, voltage_setpoint=1.01)
-```
+````
 
 ### Changing AVR Parameters
 
