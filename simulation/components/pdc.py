@@ -82,6 +82,8 @@ class PhasorDataConcentrator(C37118Station):
         self.pmu_data_buffers: Dict[int, deque] = defaultdict(lambda: deque(maxlen=100))
         self.pmu_configurations: Dict[int, Any] = {}
         self.pmu_headers: Dict[int, str] = {}
+        self.pmu_last_seen: Dict[int, float] = {}  # Track when PMU was last seen
+        self.sequence_counters: Dict[int, int] = defaultdict(int)  # Track sequence numbers
         
         # Data aggregation
         self.aggregated_data: Optional[AggregatedData] = None
@@ -153,6 +155,11 @@ class PhasorDataConcentrator(C37118Station):
     async def _handle_data_frame(self, frame: C37118DataFrame, sender_id: int, latency: float):
         """Handle data frame from PMU"""
         logger.debug(f"PDC {self.station_id}: Processing data frame from PMU {sender_id}")
+        
+        # Update PMU last seen time
+        current_time = time.time()
+        self.pmu_last_seen[sender_id] = current_time
+        
         try:
             # Extract measurement data
             if hasattr(frame, 'phasors') and frame.phasors and len(frame.phasors) > 0:
@@ -213,6 +220,8 @@ class PhasorDataConcentrator(C37118Station):
                 'phasor_channels': frame.config.phasor_channels,
                 'last_seen': time.time()
             }
+            # Also initialize tracking
+            self.pmu_last_seen[sender_id] = time.time()
         
         logger.info(f"PDC {self.station_id}: Registered PMU {sender_id} ({frame.config.station_name})")
     
@@ -345,6 +354,7 @@ class PhasorDataConcentrator(C37118Station):
     async def register_pmu(self, pmu_id: int, pmu_info: dict):
         """Manually register a PMU"""
         self.registered_pmus[pmu_id] = pmu_info
+        self.pmu_last_seen[pmu_id] = time.time()  # Initialize last seen time
         logger.info(f"PDC {self.station_id}: Manually registered PMU {pmu_id}")
     
     async def start_pmu_streaming(self, pmu_id: int):
@@ -402,11 +412,25 @@ class PhasorDataConcentrator(C37118Station):
             if pmu_id in self.pmu_data_buffers and self.pmu_data_buffers[pmu_id]:
                 latest_data = self.pmu_data_buffers[pmu_id][-1]
             
+            # Check if PMU is online using multiple criteria
+            last_seen_time = self.pmu_last_seen.get(pmu_id, 0)
+            data_timestamp = latest_data.timestamp if latest_data else 0
+            
+            # PMU is online if:
+            # 1. We've seen it recently (within 5 seconds), OR
+            # 2. We have recent data (within 3 seconds)
+            time_since_seen = current_time - last_seen_time
+            time_since_data = current_time - data_timestamp
+            
+            is_online = (time_since_seen < 5.0) or (time_since_data < 3.0)
+            
             status[pmu_id] = {
                 'name': pmu_info['name'],
-                'online': latest_data is not None and (current_time - latest_data.timestamp) < 2.0,
-                'last_data_time': latest_data.timestamp if latest_data else 0,
-                'data_age': current_time - latest_data.timestamp if latest_data else float('inf'),
+                'online': is_online,
+                'last_seen_time': last_seen_time,
+                'last_data_time': data_timestamp,
+                'time_since_seen': time_since_seen,
+                'data_age': time_since_data,
                 'sequence_number': latest_data.sequence_number if latest_data else 0,
                 'buffer_size': len(self.pmu_data_buffers[pmu_id]) if pmu_id in self.pmu_data_buffers else 0
             }
@@ -419,10 +443,15 @@ class PhasorDataConcentrator(C37118Station):
         avg_data_quality = (statistics.mean(self.stats['data_quality_history']) 
                           if self.stats['data_quality_history'] else 0.0)
         
+        # Count online PMUs
+        pmu_status = self.get_pmu_status()
+        online_pmus = sum(1 for status in pmu_status.values() if status['online'])
+        
         return {
             'station_id': self.station_id,
             'station_name': self.station_name,
             'registered_pmus': len(self.registered_pmus),
+            'online_pmus': online_pmus,
             'frames_received': self.stats['frames_received'],
             'data_frames': self.stats['data_frames'],
             'config_frames': self.stats['config_frames'],
@@ -433,5 +462,6 @@ class PhasorDataConcentrator(C37118Station):
             'avg_data_quality': round(avg_data_quality, 3),
             'time_window': self.time_window,
             'max_data_age': self.max_data_age,
-            'last_aggregation_age': round(time.time() - self.stats['last_aggregation_time'], 2)
+            'last_aggregation_age': round(time.time() - self.stats['last_aggregation_time'], 2),
+            'pmu_status': pmu_status
         }

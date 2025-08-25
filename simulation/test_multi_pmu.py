@@ -105,7 +105,7 @@ async def test_multi_pmu():
         await grid_task
     except asyncio.CancelledError:
         pass
-    await grid_sim.stop()
+    await grid_sim.stop_simulation()
     await protocol.stop_network()
     
     logger.info("=== Test Complete ===")

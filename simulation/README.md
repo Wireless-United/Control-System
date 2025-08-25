@@ -169,16 +169,19 @@ Changed Load 0 demand by ΔP=20.0MW, new demand: P=117.0MW, Q=44.3MVAR
 ### What the PMU-PDC System Does
 
 1. **PMU Initialization**:
+
    - Deploys Phasor Measurement Units on strategic grid buses
    - 50 fps (20ms) high-frequency synchrophasor measurements
    - Measures voltage magnitude, angle, frequency, and ROCOF
 
 2. **PDC Aggregation**:
+
    - Phasor Data Concentrator collects multi-PMU streams
    - Timestamp alignment within 50ms windows
    - Data quality assessment and validation
 
 3. **IEEE C37.118 Protocol**:
+
    - Standard synchrophasor communication protocol
    - Configuration, Data, Header, and Command frame types
    - CRC validation and error handling
