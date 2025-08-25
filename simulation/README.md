@@ -1,6 +1,6 @@
 # Cyber-Physical Grid Simulation
 
-A modular cyber-## Installationation project that integrates IEEE-39 bus system with AVR (Automatic Voltage Regulator) control using PROFINET-like communication.
+A comprehensive cyber-physical simulation project that integrates IEEE-39 bus system with multiple communication protocols and control systems for power system analysis.
 
 ## Project Structure
 
@@ -8,6 +8,8 @@ A modular cyber-## Installationation project that integrates IEEE-39 bus system 
 simulation/
 ├── grid.py                 # Main simulation entry point
 ├── scada.py               # SCADA-RTU demonstration with DNP3
+├── pmu_pdc.py             # PMU-PDC synchrophasor demonstration
+├── test_pmu_simple.py     # Simple PMU-PDC test
 ├── test_setup.py          # Test script to verify installation
 ├── requirements.txt       # Required Python packages
 ├── components/            # Grid components
@@ -17,7 +19,9 @@ simulation/
 │   ├── load.py           # Load component
 │   ├── avr.py            # Automatic Voltage Regulator
 │   ├── scada_master.py   # SCADA Master (DNP3)
-│   └── rtu.py            # Remote Terminal Unit (DNP3)
+│   ├── rtu.py            # Remote Terminal Unit (DNP3)
+│   ├── pmu.py            # Phasor Measurement Unit (IEEE C37.118)
+│   └── pdc.py            # Phasor Data Concentrator (IEEE C37.118)
 ├── endpoints/             # Control system endpoints
 │   ├── __init__.py
 │   ├── sensor.py         # Voltage/current sensors
@@ -26,7 +30,8 @@ simulation/
 └── protocols/             # Communication protocols
     ├── __init__.py
     ├── profinet.py       # PROFINET-like fieldbus protocol
-    └── dnp3.py           # DNP3 protocol for SCADA-RTU communication
+    ├── dnp3.py           # DNP3 protocol for SCADA-RTU communication
+    └── c37_118.py        # IEEE C37.118 synchrophasor protocol
 ```
 
 ## Features
@@ -43,10 +48,18 @@ simulation/
 - **PID Control**: Proportional-Integral-Derivative voltage regulation
 - **Multiple Generators**: Support for multiple AVR-controlled generators
 
+### PMU-PDC Synchrophasor System
+
+- **Phasor Measurement Units (PMUs)**: High-frequency synchrophasor measurements (50 fps)
+- **Phasor Data Concentrator (PDC)**: Multi-PMU data aggregation and alignment
+- **IEEE C37.118 Protocol**: Standard synchrophasor communication protocol
+- **Real-time Monitoring**: Voltage magnitude/angle, frequency, and ROCOF measurements
+
 ### Communication
 
 - **PROFINET Protocol**: Low-latency fieldbus communication (2ms typical)
 - **DNP3 Protocol**: SCADA-RTU communication with polling (100-500ms latency)
+- **IEEE C37.118 Protocol**: High-speed synchrophasor streaming (20ms, 50 fps)
 - **Asynchronous Messaging**: Non-blocking communication between endpoints
 - **Message Prioritization**: High/normal/low priority message handling
 
@@ -97,6 +110,18 @@ Run the SCADA demonstration with DNP3 communication:
 python scada.py
 ```
 
+### PMU-PDC Synchrophasor System
+
+Run the PMU-PDC demonstration with IEEE C37.118 protocol:
+
+```bash
+# Simple PMU-PDC test (recommended first)
+python test_pmu_simple.py
+
+# Full multi-PMU demonstration
+python pmu_pdc.py
+```
+
 ### What the Grid Simulation Does
 
 1. **System Initialization**:
@@ -139,6 +164,43 @@ PROFINET: 156/156 delivered, avg latency: 2.1ms
 Changed Load 0 demand by ΔP=20.0MW, new demand: P=117.0MW, Q=44.3MVAR
    Bus 3 voltage before load change: 1.021 pu
 ...
+```
+
+### What the PMU-PDC System Does
+
+1. **PMU Initialization**:
+   - Deploys Phasor Measurement Units on strategic grid buses
+   - 50 fps (20ms) high-frequency synchrophasor measurements
+   - Measures voltage magnitude, angle, frequency, and ROCOF
+
+2. **PDC Aggregation**:
+   - Phasor Data Concentrator collects multi-PMU streams
+   - Timestamp alignment within 50ms windows
+   - Data quality assessment and validation
+
+3. **IEEE C37.118 Protocol**:
+   - Standard synchrophasor communication protocol
+   - Configuration, Data, Header, and Command frame types
+   - CRC validation and error handling
+
+4. **Real-time Monitoring**:
+   - Demonstrates wide-area grid visibility
+   - Fast detection of system events
+   - Comparison with slower SCADA polling
+
+### Expected PMU-PDC Output
+
+```
+📡 PMU-PDC Synchrophasor System Demonstration
+=================================================================
+2024-01-XX XX:XX:XX - INFO - Initialized 5 PMUs and 1 PDC
+...
+[PMU] Gen PMU 1: V=1.020∠0.5°, f=50.02Hz, df/dt=0.001Hz/s
+[PDC] Aggregated 5 PMUs: Quality=100%, Latency=38ms
+...
+C37.118 frames: 4915 data, 5 config, 5 header
+Gen PMU 1: 986 frames sent, 28.1 fps
+System Performance: Average latency 38.0ms, 100% data quality
 ```
 
 ### What the SCADA System Does
