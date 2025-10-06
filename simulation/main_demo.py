@@ -11,7 +11,7 @@ Main entry point for all IEEE 39-bus system demonstrations and simulations:
 
 2. COMPLETE CYBERSECURITY SIMULATION:
    - IEEE 39-bus power system
-   - RTU outstations with DNP3 protocol
+   - Integrated RTU outstations with mock DNP3 protocol
    - SCADA master station
    - MiTM attacks with false data injection
    - Real-time cybersecurity testing
@@ -22,9 +22,12 @@ and advanced cybersecurity simulation capabilities.
 
 import sys
 import logging
-import asyncio
+import time
 import os
 from ieee39_system_strict import StrictIEEE39BusSystem
+from integrated_scada import scada_master
+from integrated_rtu import rtu_manager
+from mock_dnp3 import dnp3_channel
 import numpy as np
 
 # Add current directory to path for imports
@@ -36,6 +39,109 @@ logging.basicConfig(
     format='%(asctime)s - %(levelname)s - %(message)s'
 )
 logger = logging.getLogger(__name__)
+
+def demonstrate_cybersecurity_simulation():
+    """Complete cybersecurity simulation with SCADA-RTU system"""
+    print("\n🔒 CYBERSECURITY SIMULATION")
+    print("=" * 80)
+    print("IEEE 39-bus system with integrated SCADA-RTU cybersecurity testing")
+    
+    # Initialize power system
+    system = StrictIEEE39BusSystem()
+    
+    # Run baseline power flow analysis
+    print("\n📊 INITIALIZING POWER SYSTEM")
+    print("-" * 40)
+    baseline_analysis = system.run_strict_ieee39_analysis()
+    
+    if not baseline_analysis['pypower_analysis']:
+        print("❌ Power system initialization failed")
+        return None
+    
+    print("✓ IEEE 39-bus power system operational")
+    system_state = system.get_system_state()
+    print(f"✓ Total Load: {system_state['total_load_mw']:.1f} MW")
+    print(f"✓ Total Generation: {system_state['total_generation_mw']:.1f} MW")
+    
+    # Initialize SCADA-RTU system
+    print("\n🖥️ INITIALIZING SCADA-RTU SYSTEM")
+    print("-" * 40)
+    
+    # Create RTUs
+    rtu_manager.create_standard_rtus(system)
+    rtu_list = rtu_manager.get_rtu_list()
+    print(f"✓ Created {len(rtu_list)} RTU outstations")
+    
+    # Configure SCADA
+    for rtu_info in rtu_list:
+        scada_master.add_rtu(
+            rtu_info['rtu_id'], 
+            rtu_info['name'], 
+            rtu_info['bus_number']
+        )
+    
+    print(f"✓ SCADA master configured with {len(rtu_list)} RTUs")
+    
+    # Start SCADA-RTU system
+    rtu_manager.start_all()
+    scada_master.start()
+    
+    print("✓ SCADA-RTU system operational")
+    
+    # Monitor system for initial data collection
+    print("\n📡 COLLECTING BASELINE MEASUREMENTS")
+    print("-" * 40)
+    
+    for i in range(5):
+        time.sleep(2)
+        status = scada_master.get_system_status()
+        measurements = scada_master.get_measurements()
+        
+        print(f"Poll {i+1}: {status['responses_received']} responses, "
+              f"{len(measurements)} measurements, "
+              f"{status['active_alarms']} alarms")
+    
+    # Display system status
+    final_status = scada_master.get_system_status()
+    print(f"\n✓ SCADA System Status:")
+    print(f"  • RTUs Online: {final_status['rtus_online']}")
+    print(f"  • Total Polls: {final_status['polls_sent']}")
+    print(f"  • Successful Responses: {final_status['responses_received']}")
+    print(f"  • Active Alarms: {final_status['active_alarms']}")
+    print(f"  • Total Measurements: {final_status['total_measurements']}")
+    
+    # Show some sample measurements
+    current_measurements = scada_master.get_measurements()
+    if current_measurements:
+        print(f"\n📊 SAMPLE MEASUREMENTS:")
+        count = 0
+        for key, measurement in current_measurements.items():
+            if count < 5:  # Show first 5 measurements
+                print(f"  • {measurement.point_name}: {measurement.value:.3f} {measurement.unit}")
+                count += 1
+    
+    print(f"\n✓ Cybersecurity simulation infrastructure ready")
+    print(f"✓ Use the Streamlit MiTM interface to test attacks")
+    print(f"✓ SCADA-RTU system continues running in background")
+    
+    # Keep system running
+    print(f"\n⏰ System will run for monitoring (press Ctrl+C to stop)...")
+    try:
+        while True:
+            time.sleep(10)
+            status = scada_master.get_system_status()
+            print(f"Status: {status['responses_received']} polls, {status['active_alarms']} alarms")
+    except KeyboardInterrupt:
+        print(f"\n🛑 Shutting down cybersecurity simulation...")
+        scada_master.stop()
+        rtu_manager.stop_all()
+        print(f"✓ System shutdown complete")
+    
+    return {
+        'power_system': system,
+        'scada_status': final_status,
+        'measurements_collected': len(current_measurements)
+    }
 
 def demonstrate_load_control():
     """Demonstrate comprehensive load control with DER response"""
@@ -227,7 +333,7 @@ def run_comprehensive_demo():
 def show_menu():
     """Display simulation options menu"""
     print("\n" + "="*80)
-    print("🎯 IEEE 39-BUS SYSTEM - POWER SYSTEM & SCADA DEMO")
+    print("🎯 IEEE 39-BUS SYSTEM - POWER SYSTEM & CYBERSECURITY DEMO")
     print("="*80)
     print()
     print("Choose your simulation mode:")
@@ -238,80 +344,57 @@ def show_menu():
     print("    • DER integration testing")
     print("    • Duration: ~2 minutes")
     print()
-    print("2️⃣  NORMAL SCADA-RTU OPERATION")
-    print("    • IEEE 39-bus power system")
-    print("    • RTU outstations with DNP3")
-    print("    • SCADA master station polling")
-    print("    • Duration: 5 minutes (default)")
+    print("2️⃣  INTEGRATED CYBERSECURITY SIMULATION")
+    print("    • IEEE 39-bus power system with SCADA-RTU")
+    print("    • Mock DNP3 communication protocol")
+    print("    • Real-time measurement collection")
+    print("    • Background operation for attack testing")
+    print("    • Duration: Continuous (Ctrl+C to stop)")
     print()
-    print("🕷️  FOR CYBERSECURITY ATTACKS:")
-    print("    • Use the separate Streamlit Attack UI")
-    print("    • Run: python attacker_ui.py")
-    print("    • Launch attacks while SCADA-RTU is running")
+    print("3️⃣  STREAMLIT ATTACK INTERFACE")
+    print("    • Launch web-based MiTM attack console")
+    print("    • Professional attack simulation UI")
+    print("    • Manipulate DNP3 data in real-time")
+    print("    • Requires option 2 to be running")
     print()
     print("0️⃣  EXIT")
     print()
     print("="*80)
 
-def run_cybersecurity_simulation(mode="normal", duration=300, attack_scenarios=None):
-    """Launch the complete cybersecurity simulation"""
+def launch_streamlit_attack_ui():
+    """Launch the Streamlit MiTM Attack Interface"""
     try:
-        # Import the integrated simulation
-        from ieee39_integrated import IEEE39IntegratedSimulation, SimulationConfig, SimulationMode
+        import subprocess
+        import sys
         
-        # Convert mode string to enum
-        mode_enum = {
-            "normal": SimulationMode.NORMAL_OPERATION,
-            "attack": SimulationMode.ATTACK_SIMULATION,
-            "full_cyber": SimulationMode.FULL_CYBERSECURITY,
-            "quick": SimulationMode.NORMAL_OPERATION
-        }.get(mode, SimulationMode.NORMAL_OPERATION)
+        print(f"\n🕷️ LAUNCHING REAL-TIME SCADA ATTACK INTERFACE")
+        print("-" * 50)
+        print(f"Opening web browser with real-time attack interface...")
+        print(f"URL: http://localhost:8502")
+        print(f"Press Ctrl+C in terminal to stop interface")
         
-        # Create configuration
-        config = SimulationConfig(
-            mode=mode_enum,
-            duration=duration,
-            enable_power_system=True,
-            enable_rtus=True,
-            enable_scada=True,
-            enable_attacks=(mode in ["attack", "full_cyber"]),
-            attack_scenarios=attack_scenarios or [],
-            attack_delay=30 if mode == "quick" else 60,
-            rtu_count=5 if mode == "quick" else 10,
-            save_results=True
-        )
+        # Launch streamlit app
+        result = subprocess.run([
+            sys.executable, "-m", "streamlit", "run", 
+            "../mitm/real_attack_ui.py", 
+            "--server.port=8502"
+        ], cwd=os.path.dirname(__file__))
         
-        # Create and run simulation
-        simulation = IEEE39IntegratedSimulation(config)
+        return result.returncode == 0
         
-        print(f"\n🚀 LAUNCHING {mode.upper()} SIMULATION")
-        print(f"Duration: {duration} seconds")
-        print("Press Ctrl+C to stop simulation gracefully")
-        print("-" * 60)
-        
-        # Run simulation
-        asyncio.run(simulation.start_simulation())
-        
-        print(f"\n✅ {mode.upper()} SIMULATION COMPLETED SUCCESSFULLY")
-        return True
-        
-    except ImportError as e:
-        print(f"❌ Error: Could not import cybersecurity simulation components: {e}")
-        print("Make sure all required files are present in the simulation directory.")
-        return False
     except Exception as e:
-        print(f"❌ Simulation error: {e}")
-        logger.error(f"Cybersecurity simulation error: {e}")
+        print(f"❌ Error launching attack interface: {e}")
+        print(f"Try running manually: streamlit run mitm/real_attack_ui.py --server.port 8502")
         return False
 
-async def main():
+def main():
     """Main entry point with interactive menu"""
     
     while True:
         show_menu()
         
         try:
-            choice = input("Enter your choice (0-2): ").strip()
+            choice = input("Enter your choice (0-3): ").strip()
             
             if choice == "0":
                 print("\n👋 Goodbye!")
@@ -327,18 +410,23 @@ async def main():
                 input("\nPress Enter to continue...")
                 
             elif choice == "2":
-                print("\n📡 STARTING NORMAL SCADA-RTU OPERATION...")
-                print("💡 TIP: To launch attacks, open another terminal and run:")
-                print("    python attacker_ui.py")
-                print()
-                success = run_cybersecurity_simulation("normal", 300)
+                print("\n� STARTING INTEGRATED CYBERSECURITY SIMULATION...")
+                results = demonstrate_cybersecurity_simulation()
+                if results:
+                    print("\n✅ CYBERSECURITY SIMULATION COMPLETED")
+                else:
+                    print("\n❌ Cybersecurity simulation failed")
+                input("\nPress Enter to continue...")
+                
+            elif choice == "3":
+                print("\n🕷️ LAUNCHING ATTACK INTERFACE...")
+                success = launch_streamlit_attack_ui()
                 if not success:
-                    print("❌ Normal operation failed")
+                    print("❌ Failed to launch attack interface")
                 input("\nPress Enter to continue...")
                 
             else:
-                print("❌ Invalid choice. Please enter 0-2.")
-                print("💡 For cybersecurity attacks, use: python attacker_ui.py")
+                print("❌ Invalid choice. Please enter 0-3.")
                 input("Press Enter to continue...")
                 
         except KeyboardInterrupt:
@@ -348,14 +436,10 @@ async def main():
             print(f"\n❌ Error: {e}")
             input("Press Enter to continue...")
 
-def main_sync():
-    """Synchronous wrapper for main()"""
+if __name__ == "__main__":
     try:
-        asyncio.run(main())
+        main()
     except KeyboardInterrupt:
         print("\n👋 Simulation suite terminated.")
     except Exception as e:
         print(f"❌ Fatal error: {e}")
-
-if __name__ == "__main__":
-    main_sync()

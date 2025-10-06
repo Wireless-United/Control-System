@@ -1,0 +1,18 @@
+# IEEE 39-Bus Power System Cybersecurity Simulation Requirements
+
+# Core scientific computing
+numpy>=1.24.0
+scipy>=1.10.0
+pandas>=2.0.0
+
+# Power system analysis
+pypower>=5.1.4
+pandapower>=2.13.0
+
+# Visualization and UI
+matplotlib>=3.7.0
+plotly>=5.15.0
+streamlit>=1.25.0
+
+# System utilities  
+psutil>=5.9.0

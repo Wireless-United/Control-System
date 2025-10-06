@@ -1,0 +1,232 @@
+{
+  "status": "ONLINE",
+  "timestamp": "2025-10-07T03:35:50.631804",
+  "active_rtus": "20/20",
+  "total_rtus": 20,
+  "recent_measurements": 120,
+  "scada_running": true,
+  "dnp3_attacks_active": false,
+  "real_time_data": [
+    {
+      "rtu_id": 1,
+      "bus_number": 30,
+      "timestamp": 1759788348.589628,
+      "voltage_magnitude": 1.0499,
+      "voltage_angle": -6.0265889749704655,
+      "active_power": 146.38883998135694,
+      "reactive_power": 0.0,
+      "frequency": 50.0,
+      "status": "GOOD"
+    },
+    {
+      "rtu_id": 2,
+      "bus_number": 31,
+      "timestamp": 1759788348.5922155,
+      "voltage_magnitude": 0.982,
+      "voltage_angle": 0.0,
+      "active_power": 177.11608764842737,
+      "reactive_power": 0.0,
+      "frequency": 50.0,
+      "status": "GOOD"
+    },
+    {
+      "rtu_id": 3,
+      "bus_number": 32,
+      "timestamp": 1759788348.589754,
+      "voltage_magnitude": 0.9841000000000002,
+      "voltage_angle": -0.14791560564880912,
+      "active_power": 159.36506928894,
+      "reactive_power": 0.0,
+      "frequency": 50.0,
+      "status": "GOOD"
+    },
+    {
+      "rtu_id": 4,
+      "bus_number": 33,
+      "timestamp": 1759788348.591564,
+      "voltage_magnitude": 0.9971999999999999,
+      "voltage_angle": -0.09425148431464309,
+      "active_power": 67.82190781646719,
+      "reactive_power": 0.0,
+      "frequency": 50.0,
+      "status": "GOOD"
+    },
+    {
+      "rtu_id": 5,
+      "bus_number": 34,
+      "timestamp": 1759788348.5894716,
+      "voltage_magnitude": 1.0123,
+      "voltage_angle": -1.2922638042960173,
+      "active_power": 154.3070891776882,
+      "reactive_power": 0.0,
+      "frequency": 50.0,
+      "status": "GOOD"
+    },
+    {
+      "rtu_id": 6,
+      "bus_number": 35,
+      "timestamp": 1759788348.5924585,
+      "voltage_magnitude": 1.0494000000000003,
+      "voltage_angle": 1.4782084619863949,
+      "active_power": 173.25898633516073,
+      "reactive_power": 0.0,
+      "frequency": 50.0,
+      "status": "GOOD"
+    },
+    {
+      "rtu_id": 7,
+      "bus_number": 36,
+      "timestamp": 1759788348.5923514,
+      "voltage_magnitude": 1.0636000000000005,
+      "voltage_angle": 3.705301340936074,
+      "active_power": 64.81798486954176,
+      "reactive_power": 0.0,
+      "frequency": 50.0,
+      "status": "GOOD"
+    },
+    {
+      "rtu_id": 8,
+      "bus_number": 37,
+      "timestamp": 1759788348.5905,
+      "voltage_magnitude": 1.0275000000000003,
+      "voltage_angle": -1.1414291954942433,
+      "active_power": -48.57231837698521,
+      "reactive_power": 0.0,
+      "frequency": 50.0,
+      "status": "GOOD"
+    },
+    {
+      "rtu_id": 9,
+      "bus_number": 38,
+      "timestamp": 1759788348.5930789,
+      "voltage_magnitude": 1.0264999999999997,
+      "voltage_angle": 3.3354769926223344,
+      "active_power": -48.637825725232744,
+      "reactive_power": 0.0,
+      "frequency": 50.0,
+      "status": "GOOD"
+    },
+    {
+      "rtu_id": 10,
+      "bus_number": 39,
+      "timestamp": 1759788348.591698,
+      "voltage_magnitude": 1.03,
+      "voltage_angle": -11.885397038272519,
+      "active_power": -0.8309012001977862,
+      "reactive_power": 0.0,
+      "frequency": 50.0,
+      "status": "GOOD"
+    },
+    {
+      "rtu_id": 11,
+      "bus_number": 3,
+      "timestamp": 1759788348.588597,
+      "voltage_magnitude": 1.0422541896638198,
+      "voltage_angle": -10.053822917707786,
+      "active_power": 2.4,
+      "reactive_power": 0.0,
+      "frequency": 50.0,
+      "status": "GOOD"
+    },
+    {
+      "rtu_id": 12,
+      "bus_number": 4,
+      "timestamp": 1759788348.5918186,
+      "voltage_magnitude": 1.0205460710353096,
+      "voltage_angle": -10.320788924648493,
+      "active_power": 184.0,
+      "reactive_power": 0.0,
+      "frequency": 50.0,
+      "status": "GOOD"
+    },
+    {
+      "rtu_id": 13,
+      "bus_number": 7,
+      "timestamp": 1759788348.5913703,
+      "voltage_magnitude": 1.014553666853757,
+      "voltage_angle": -10.421255439853828,
+      "active_power": 84.0,
+      "reactive_power": 0.0,
+      "frequency": 50.0,
+      "status": "GOOD"
+    },
+    {
+      "rtu_id": 14,
+      "bus_number": 8,
+      "timestamp": 1759788348.5892923,
+      "voltage_magnitude": 1.0139065412677344,
+      "voltage_angle": -10.890286279898996,
+      "active_power": 176.6,
+      "reactive_power": 0.0,
+      "frequency": 50.0,
+      "status": "GOOD"
+    },
+    {
+      "rtu_id": 15,
+      "bus_number": 15,
+      "timestamp": 1759788348.591035,
+      "voltage_magnitude": 1.0312786815379273,
+      "voltage_angle": -9.2784756497437,
+      "active_power": 153.0,
+      "reactive_power": 0.0,
+      "frequency": 50.0,
+      "status": "GOOD"
+    },
+    {
+      "rtu_id": 16,
+      "bus_number": 16,
+      "timestamp": 1759788348.5911493,
+      "voltage_magnitude": 1.0449002936037315,
+      "voltage_angle": -8.218426141982718,
+      "active_power": 32.3,
+      "reactive_power": 0.0,
+      "frequency": 50.0,
+      "status": "GOOD"
+    },
+    {
+      "rtu_id": 17,
+      "bus_number": 18,
+      "timestamp": 1759788348.5912561,
+      "voltage_magnitude": 1.0440693057369719,
+      "voltage_angle": -9.812565012195911,
+      "active_power": 30.0,
+      "reactive_power": 0.0,
+      "frequency": 50.0,
+      "status": "GOOD"
+    },
+    {
+      "rtu_id": 18,
+      "bus_number": 20,
+      "timestamp": 1759788348.5889933,
+      "voltage_magnitude": 0.9965766060902578,
+      "voltage_angle": -5.583345434830555,
+      "active_power": 103.0,
+      "reactive_power": 0.0,
+      "frequency": 50.0,
+      "status": "GOOD"
+    },
+    {
+      "rtu_id": 19,
+      "bus_number": 21,
+      "timestamp": 1759788348.5920842,
+      "voltage_magnitude": 1.0446072894151253,
+      "voltage_angle": -6.256128178886864,
+      "active_power": 115.0,
+      "reactive_power": 0.0,
+      "frequency": 50.0,
+      "status": "GOOD"
+    },
+    {
+      "rtu_id": 20,
+      "bus_number": 23,
+      "timestamp": 1759788348.590615,
+      "voltage_magnitude": 1.0538982029319175,
+      "voltage_angle": -2.7801297062490846,
+      "active_power": 84.6,
+      "reactive_power": 0.0,
+      "frequency": 50.0,
+      "status": "GOOD"
+    }
+  ],
+  "last_update": "2025-10-07T03:35:50.632114"
+}
