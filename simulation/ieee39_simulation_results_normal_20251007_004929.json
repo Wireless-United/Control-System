@@ -1,0 +1,26 @@
+{
+  "configuration": {
+    "mode": "SimulationMode.NORMAL_OPERATION",
+    "duration": 600,
+    "enable_power_system": true,
+    "enable_rtus": true,
+    "enable_scada": true,
+    "enable_attacks": false,
+    "attack_scenarios": [],
+    "attack_delay": 60,
+    "rtu_count": 10,
+    "log_level": "INFO",
+    "save_results": true
+  },
+  "power_system_data": [],
+  "communication_logs": [],
+  "attack_results": [],
+  "performance_metrics": {
+    "total_duration": 0.00035500526428222656,
+    "power_system_updates": 0,
+    "update_rate": 0.0,
+    "rtus_deployed": 0,
+    "communication_success_rate": 0.0,
+    "attack_success_rate": 0.0
+  }
+}

@@ -69,35 +69,40 @@ class AttackStats:
 class MiTMAttacker:
     """
     Main Man-in-the-Middle attacker controller.
-    Coordinates ARP spoofing and DNP3 packet manipulation attacks.
+    Coordinates localhost traffic interception and DNP3 packet manipulation attacks.
+    Optimized for localhost-based SCADA-RTU simulation environments.
     """
     
-    def __init__(self, interface: str = "eth0"):
+    def __init__(self, interface: str = "localhost"):
         """
         Initialize MiTM attacker.
         
         Args:
-            interface: Network interface for attacks
+            interface: Network interface for attacks (localhost for simulation)
         """
         # Import here to avoid circular imports
         try:
-            from .arp_spoof import ARPSpoofer
+            from .localhost_interceptor import LocalhostInterceptor, create_rtu_targets
             from .packet_filter import PacketFilter
         except ImportError:
             # Fallback for direct script execution
             import sys
             import os
             sys.path.append(os.path.dirname(__file__))
-            from arp_spoof import ARPSpoofer
+            from localhost_interceptor import LocalhostInterceptor, create_rtu_targets
             from packet_filter import PacketFilter
         
         self.interface = interface
-        self.arp_spoofer = ARPSpoofer(interface)
+        self.interceptor = LocalhostInterceptor()
         self.packet_filter = PacketFilter()
+        self.rtu_targets = create_rtu_targets()
         
         self.is_attacking = False
         self.attack_config: Optional[AttackConfig] = None
         self.attack_stats = AttackStats(start_time=time.time())
+        
+        logger.info(f"MiTM Attacker initialized for {interface} interface")
+        logger.info(f"Available RTU targets: {len(self.rtu_targets)}")
         self.attack_task: Optional[asyncio.Task] = None
         
         logger.info("MiTM Attacker initialized")
@@ -166,8 +171,11 @@ class MiTMAttacker:
         logger.info("MiTM attack stopped successfully")
     
     async def _start_attack_components(self, config: AttackConfig):
-        """Start ARP spoofing and packet filtering."""
+        """Start localhost traffic interception and packet manipulation."""
         logger.info("Starting attack components...")
+        
+        # Start localhost traffic interception
+        await self.interceptor.start_interception(self.rtu_targets)
         
         # Configure packet filter attacks
         attack_scenarios = []
@@ -180,24 +188,26 @@ class MiTMAttacker:
         # Enable attack mode in packet filter
         self.packet_filter.enable_attack(attack_scenarios)
         
-        # Start packet filtering
-        target_ips = [config.target_scada_ip, config.target_rtu_ip]
-        await self.packet_filter.start_filtering(target_ips)
-        
-        # Start ARP spoofing
-        await self.arp_spoofer.start_spoofing(config.target_scada_ip, config.target_rtu_ip)
-        
         logger.info("✅ All attack components started")
+        logger.info("📡 Traffic interception active on proxy ports:")
+        for target in self.rtu_targets:
+            logger.info(f"  {target.name}: 127.0.0.1:{target.proxy_port} -> 127.0.0.1:{target.original_port}")
     
     async def _stop_attack_components(self):
         """Stop all attack components."""
         logger.info("Stopping attack components...")
         
-        # Stop ARP spoofing
-        await self.arp_spoofer.stop_spoofing()
+        try:
+            # Stop localhost traffic interception
+            await self.interceptor.stop_interception()
+        except Exception as e:
+            logger.error(f"Error stopping traffic interception: {e}")
         
-        # Stop packet filtering
-        await self.packet_filter.stop_filtering()
+        try:
+            # Stop packet filtering
+            await self.packet_filter.stop_filtering()
+        except Exception as e:
+            logger.error(f"Error stopping packet filtering: {e}")
         
         logger.info("✅ All attack components stopped")
     
@@ -327,8 +337,10 @@ class MiTMAttacker:
             'interface': self.interface,
             'attack_config': self.attack_config.__dict__ if self.attack_config else None,
             'attack_stats': self.attack_stats.__dict__,
-            'arp_spoofer_status': self.arp_spoofer.get_status(),
-            'packet_filter_stats': self.packet_filter.get_statistics()
+            'interceptor_status': self.interceptor.get_status(),
+            'packet_filter_stats': self.packet_filter.get_statistics(),
+            'available_targets': [{'name': t.name, 'port': t.original_port, 'proxy': t.proxy_port} 
+                                for t in self.rtu_targets]
         }
 
 # Command Line Interface

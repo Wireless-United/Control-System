@@ -1,25 +1,40 @@
 #!/usr/bin/env python3
 """
-IEEE 39-Bus System with Load Control Demonstration 
+IEEE 39-Bus System - Complete Simulation Suite
 
-Complete demonstration of IEEE 39-bus system with:
-- Strict IEEE standards compliance
-- PyPower for classical power flow analysis
-- PandaPower for modern power system studies  
-- Modern DER integration and coordination
-- Load control and system response testing
-- 50 Hz operation throughout
-this is sample demo for load control 
-This is the main entry point for all IEEE 39-bus demonstrations.
+Main entry point for all IEEE 39-bus system demonstrations and simulations:
+
+1. BASIC POWER SYSTEM DEMO:
+   - IEEE 39-bus power flow analysis
+   - Load control demonstration
+   - DER integration testing
+
+2. COMPLETE CYBERSECURITY SIMULATION:
+   - IEEE 39-bus power system
+   - RTU outstations with DNP3 protocol
+   - SCADA master station
+   - MiTM attacks with false data injection
+   - Real-time cybersecurity testing
+
+This unified interface provides access to both basic power system studies
+and advanced cybersecurity simulation capabilities.
 """
 
 import sys
 import logging
+import asyncio
+import os
 from ieee39_system_strict import StrictIEEE39BusSystem
 import numpy as np
 
+# Add current directory to path for imports
+sys.path.append(os.path.dirname(__file__))
+
 # Configure logging
-logging.basicConfig(level=logging.INFO)
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(levelname)s - %(message)s'
+)
 logger = logging.getLogger(__name__)
 
 def demonstrate_load_control():
@@ -209,21 +224,138 @@ def run_comprehensive_demo():
         logger.error(f"Demo error: {e}")
         return None
 
-def main():
-    """Main entry point"""
-    print("IEEE 39-Bus Power System - Load Control Demo")
-    print("PyPower + PandaPower + Modern DERs")
-    print("=" * 60)
+def show_menu():
+    """Display simulation options menu"""
+    print("\n" + "="*80)
+    print("🎯 IEEE 39-BUS SYSTEM - POWER SYSTEM & SCADA DEMO")
+    print("="*80)
+    print()
+    print("Choose your simulation mode:")
+    print()
+    print("1️⃣  BASIC POWER SYSTEM DEMO")
+    print("    • IEEE 39-bus power flow analysis")
+    print("    • Load control demonstration") 
+    print("    • DER integration testing")
+    print("    • Duration: ~2 minutes")
+    print()
+    print("2️⃣  NORMAL SCADA-RTU OPERATION")
+    print("    • IEEE 39-bus power system")
+    print("    • RTU outstations with DNP3")
+    print("    • SCADA master station polling")
+    print("    • Duration: 5 minutes (default)")
+    print()
+    print("🕷️  FOR CYBERSECURITY ATTACKS:")
+    print("    • Use the separate Streamlit Attack UI")
+    print("    • Run: python attacker_ui.py")
+    print("    • Launch attacks while SCADA-RTU is running")
+    print()
+    print("0️⃣  EXIT")
+    print()
+    print("="*80)
+
+def run_cybersecurity_simulation(mode="normal", duration=300, attack_scenarios=None):
+    """Launch the complete cybersecurity simulation"""
+    try:
+        # Import the integrated simulation
+        from ieee39_integrated import IEEE39IntegratedSimulation, SimulationConfig, SimulationMode
+        
+        # Convert mode string to enum
+        mode_enum = {
+            "normal": SimulationMode.NORMAL_OPERATION,
+            "attack": SimulationMode.ATTACK_SIMULATION,
+            "full_cyber": SimulationMode.FULL_CYBERSECURITY,
+            "quick": SimulationMode.NORMAL_OPERATION
+        }.get(mode, SimulationMode.NORMAL_OPERATION)
+        
+        # Create configuration
+        config = SimulationConfig(
+            mode=mode_enum,
+            duration=duration,
+            enable_power_system=True,
+            enable_rtus=True,
+            enable_scada=True,
+            enable_attacks=(mode in ["attack", "full_cyber"]),
+            attack_scenarios=attack_scenarios or [],
+            attack_delay=30 if mode == "quick" else 60,
+            rtu_count=5 if mode == "quick" else 10,
+            save_results=True
+        )
+        
+        # Create and run simulation
+        simulation = IEEE39IntegratedSimulation(config)
+        
+        print(f"\n🚀 LAUNCHING {mode.upper()} SIMULATION")
+        print(f"Duration: {duration} seconds")
+        print("Press Ctrl+C to stop simulation gracefully")
+        print("-" * 60)
+        
+        # Run simulation
+        asyncio.run(simulation.start_simulation())
+        
+        print(f"\n✅ {mode.upper()} SIMULATION COMPLETED SUCCESSFULLY")
+        return True
+        
+    except ImportError as e:
+        print(f"❌ Error: Could not import cybersecurity simulation components: {e}")
+        print("Make sure all required files are present in the simulation directory.")
+        return False
+    except Exception as e:
+        print(f"❌ Simulation error: {e}")
+        logger.error(f"Cybersecurity simulation error: {e}")
+        return False
+
+async def main():
+    """Main entry point with interactive menu"""
     
-    # Run comprehensive demonstration
-    results = run_comprehensive_demo()
-    
-    if results:
-        print("\n✅ IEEE 39-Bus System: READY FOR ADVANCED STUDIES")
-        return results
-    else:
-        print("\n❌ System not ready")
-        return None
+    while True:
+        show_menu()
+        
+        try:
+            choice = input("Enter your choice (0-2): ").strip()
+            
+            if choice == "0":
+                print("\n👋 Goodbye!")
+                break
+                
+            elif choice == "1":
+                print("\n🔋 STARTING BASIC POWER SYSTEM DEMO...")
+                results = run_comprehensive_demo()
+                if results:
+                    print("\n✅ BASIC DEMO COMPLETED SUCCESSFULLY")
+                else:
+                    print("\n❌ Basic demo failed")
+                input("\nPress Enter to continue...")
+                
+            elif choice == "2":
+                print("\n📡 STARTING NORMAL SCADA-RTU OPERATION...")
+                print("💡 TIP: To launch attacks, open another terminal and run:")
+                print("    python attacker_ui.py")
+                print()
+                success = run_cybersecurity_simulation("normal", 300)
+                if not success:
+                    print("❌ Normal operation failed")
+                input("\nPress Enter to continue...")
+                
+            else:
+                print("❌ Invalid choice. Please enter 0-2.")
+                print("💡 For cybersecurity attacks, use: python attacker_ui.py")
+                input("Press Enter to continue...")
+                
+        except KeyboardInterrupt:
+            print("\n\n⚠️ Interrupted by user")
+            break
+        except Exception as e:
+            print(f"\n❌ Error: {e}")
+            input("Press Enter to continue...")
+
+def main_sync():
+    """Synchronous wrapper for main()"""
+    try:
+        asyncio.run(main())
+    except KeyboardInterrupt:
+        print("\n👋 Simulation suite terminated.")
+    except Exception as e:
+        print(f"❌ Fatal error: {e}")
 
 if __name__ == "__main__":
-    main()
+    main_sync()
