@@ -59,25 +59,29 @@ This project provides a complete power system security analysis platform that in
   - Cross-validation between data sources
   - Performance monitoring
 
-## Quick Start
+## 🔍 Attack Scenarios
 
-### Test Individual Components
-
-1. **Test PMU-PDC Communication:**
+### Scenario 1: Breaker Manipulation
 
 ```bash
-cd simulation
-python test_multi_pmu.py
+python mitm/attacker.py --scenario breaker_trip_close --duration 60
 ```
 
-2. **Test PDC-SCADA Integration:**
+- **Objective:** Manipulate circuit breaker commands
+- **Method:** Intercepts DNP3 binary operate commands
+- **Impact:** Unauthorized equipment switching
+
+### Scenario 2: Generator Control
 
 ```bash
-cd simulation
-python test_pdc_scada_integration.py
+python mitm/attacker.py --scenario generator_setpoint --attack fci
 ```
 
-3. **Run Complete Integration:**
+- **Objective:** Modify generator setpoint commands
+- **Method:** Alters analog operate commands
+- **Impact:** Generator over/under generation
+
+### Scenario 3: Data Falsification
 
 ```bash
 cd simulation
