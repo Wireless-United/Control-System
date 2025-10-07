@@ -1,0 +1,15 @@
+{
+    "name": "medium_fcnn",
+    "input_shape": 26,
+    "batch_size": 32,
+    "epochs": 100,
+    "training_time_seconds": 8.712058544158936,
+    "metrics": {
+        "accuracy": 0.955,
+        "precision": 0.9846153846153847,
+        "recall": 0.960960960960961,
+        "f1_score": 0.9726443768996961,
+        "training_time": 8.712058544158936,
+        "model_parameters": 14721
+    }
+}

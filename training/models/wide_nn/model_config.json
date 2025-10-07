@@ -1,0 +1,15 @@
+{
+    "name": "wide_nn",
+    "input_shape": 26,
+    "batch_size": 32,
+    "epochs": 100,
+    "training_time_seconds": 6.431283712387085,
+    "metrics": {
+        "accuracy": 0.95,
+        "precision": 0.9616519174041298,
+        "recall": 0.978978978978979,
+        "f1_score": 0.9702380952380952,
+        "training_time": 6.431283712387085,
+        "model_parameters": 281089
+    }
+}

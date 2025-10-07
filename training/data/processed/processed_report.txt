@@ -1,0 +1,16 @@
+PREPROCESSING REPORT
+===================
+
+Generated: 2025-10-07T07:59:44.629089
+
+Data Shapes:
+  X_train: (1598, 26)
+  X_test: (400, 26)
+
+Class Distribution:
+  train: 266 normal (16.6%), 1332 attack (83.4%)
+  test: 67 normal (16.8%), 333 attack (83.2%)
+
+Feature Count: 26
+  Categorical features: 3
+  Numerical features: 9

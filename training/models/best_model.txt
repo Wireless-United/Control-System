@@ -1,0 +1,4 @@
+Best model: medium_fcnn
+F1 Score: 0.9726
+Accuracy: 0.9550
+Directory: N:\PraneshAvv\SEMESTER-5\control systems\Control-System\training\models\medium_fcnn

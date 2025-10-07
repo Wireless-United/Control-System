@@ -1,0 +1,14 @@
+{
+  "total_samples": 1998,
+  "attack_count": 1665,
+  "attack_percentage": 83.33333333333334,
+  "attack_types": {
+    "Status Spoofing": 333,
+    "Voltage Attack": 333,
+    "Measurement Noise": 333,
+    "Combined Attack": 333,
+    "None": 333,
+    "Frequency Attack": 333
+  },
+  "generated_at": "2025-10-07T07:59:23.838415"
+}

@@ -1,0 +1,15 @@
+{
+    "name": "deep_fcnn",
+    "input_shape": 26,
+    "batch_size": 32,
+    "epochs": 100,
+    "training_time_seconds": 10.532117128372192,
+    "metrics": {
+        "accuracy": 0.9525,
+        "precision": 0.9728915662650602,
+        "recall": 0.96996996996997,
+        "f1_score": 0.9714285714285714,
+        "training_time": 10.532117128372192,
+        "model_parameters": 73537
+    }
+}

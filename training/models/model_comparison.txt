@@ -1,0 +1,10 @@
+MODEL COMPARISON
+===============
+
+Generated: 2025-10-07T08:02:53.163718
+
+             accuracy  precision    recall  f1_score  training_time  model_parameters
+medium_fcnn    0.9550   0.984615  0.960961  0.972644       8.712059             14721
+deep_fcnn      0.9525   0.972892  0.969970  0.971429      10.532117             73537
+simple_fcnn    0.9525   0.978659  0.963964  0.971256       8.955957              4225
+wide_nn        0.9500   0.961652  0.978979  0.970238       6.431284            281089
